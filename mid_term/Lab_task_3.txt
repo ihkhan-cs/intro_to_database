@@ -1,0 +1,32 @@
+1) SELECT SYSDATE "Date"
+   FROM dual;
+
+
+2) SELECT empno, ename, sal, (sal*115/100) "New salary"
+   FROM emp;
+
+
+3) SELECT empno, ename, sal, ROUND(sal*115/100)"New salary", round((sal*115/100)-sal) "Increase"
+   FROM emp;
+
+
+4) SELECT ename, hiredate, TO_CHAR(NEXT_DAY(ADD_MONTHS(hiredate,6),'MONDAY'),'Day," the" fmddth "of" Month,YYYY') as REVIEW
+   FROM emp;
+
+
+5) SELECT ename, round((sysdate-hiredate)/30) Months_worked
+   FROM emp
+   ORDER BY Months_Worked;
+
+
+6) SELECT ename||' earns '|| sal ||' monthly but wants '|| sal*3 "DREAM SALARY"
+   FROM emp;
+
+
+7) SELECT INITCAP(ename) "SELECTIVE EMPLOYEE", LENGTH(ename) "LENGTH OF THEIR NAMES"
+   FROM emp
+   WHERE ename LIKE 'J%' OR ename LIKE 'A%' OR ename LIKE 'M%';
+
+
+8) SELECT ename, NVL(TO_CHAR(comm), 'No Commission') COMM
+   FROM   emp;

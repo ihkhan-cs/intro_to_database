@@ -1,0 +1,14 @@
+1) SELECT ename as Name, deptno as Department_No FROM EMP;
+
+2) SELECT DISTINCT job FROM emp
+   WHERE deptno=30;
+
+3) SELECT loc as Location FROM dept
+   WHERE deptno=30;
+
+4) SELECT empno as Employee_NO, ename as Employee_Name FROM emp
+   WHERE comm > 0;
+
+5) SELECT ename as name, deptno as department
+   FROM emp
+   WHERE ename LIKE '%A%';   

@@ -1,0 +1,33 @@
+1) SELECT ename as name, sal as salary
+   FROM emp
+   WHERE sal>2850
+   ORDER BY sal;
+
+2) SELECT ename as name, deptno as department
+   FROM emp
+   WHERE empno = 7566;
+
+3) SELECT ename, job, hiredate 
+   FROM emp 
+   where hiredate between '20-FEB-1981' and '01-MAY-1981';
+
+4) SELECT ename as name, deptno as department
+   FROM emp
+   WHERE deptno IN (10, 30) ORDER BY ename;
+
+5) SELECT ename as employee, sal as monthly_salary
+   FROM emp
+   WHERE sal > 1500 and deptno IN (10, 30);
+
+6) SELECT ename as name, hiredate 
+   FROM emp
+   WHERE hiredate BETWEEN '01-JAN-82' AND '31-DEC-82';
+
+7) SELECT ename as name, job 
+   FROM emp 
+   WHERE mgr is null;
+
+8) SELECT ename as name, sal as salary, comm as commission 
+   FROM emp
+   WHERE comm > 0
+   ORDER BY sal desc, comm desc;
