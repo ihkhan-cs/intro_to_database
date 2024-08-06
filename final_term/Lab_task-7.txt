@@ -1,0 +1,96 @@
+1) SELECT *
+   FROM emp
+   WHERE sal >ALL (SELECT sal
+   FROM emp
+   WHERE job = 'MANAGER');
+
+2) SELECT *
+   FROM emp
+   WHERE sal >ANY (SELECT sal
+   FROM emp
+   WHERE job ='MANAGER')
+   AND job <> 'MANAGER';
+
+3) SELECT empno AS "Employee Number", job, sal AS "Salaries"
+   FROM emp
+   WHERE job = 'ANALYST' 
+   AND sal >ANY (SELECT sal
+   FROM emp
+   WHERE job = 'MANAGER');
+
+4) SELECT *
+   FROM emp
+   WHERE deptno = (SELECT deptno
+   FROM dept
+   WHERE loc = 'DALLAS');
+
+5) SELECT dname AS "Department Name", loc AS "Location"
+   FROM dept
+   WHERE deptno IN (SELECT deptno
+   FROM emp
+   WHERE mgr = (SELECT empno
+   FROM emp
+   WHERE ename = 'CLARK'));
+
+6) SELECT *
+   FROM dept
+   WHERE deptno IN (SELECT deptno
+   FROM emp
+   WHERE job = 'MANAGER');
+
+7) SELECT MAX(sal) AS "First Maximum salary"
+   FROM emp;
+
+8) SELECT MAX(sal) "Second Maximum salary"
+   FROM emp
+   WHERE sal < (SELECT MAX(sal)
+   FROM emp);
+
+9) SELECT MAX(sal) "Third Maximum salary"
+   FROM emp
+   WHERE sal < (SELECT MAX(sal)
+   FROM emp
+   WHERE sal < (SELECT MAX(sal)
+   FROM emp));
+
+10) SELECT *
+    FROM emp
+    WHERE job IN ('MANAGER', 'CLERK')
+    AND deptno IN (SELECT deptno
+    FROM dept
+    WHERE dname IN ('Accounts', 'Marketing'));
+
+11) SELECT *
+    FROM emp
+    WHERE JOB ='SALESMAN'
+    AND
+    deptno IN (SELECT deptno
+    FROM dept
+    WHERE loc <> 'DALLAS');
+
+12) SELECT *
+    FROM emp 
+    WHERE deptno = (SELECT deptno
+    FROM emp
+    WHERE ename = 'SCOTT')
+    AND ename <> 'SCOTT';
+
+13) SELECT *
+    FROM emp 
+    WHERE sal = (SELECT sal
+    FROM emp
+    WHERE ename = 'SMITH')
+    AND ename <> 'SMITH';
+
+14) SELECT * 
+    FROM emp
+    WHERE comm > 0 
+    AND TO_CHAR (hiredate, 'DAY') IN ('SUNDAY', 'MONDAY', 'TUESDAY', 'WEDNESDAY')
+    AND deptno = (SELECT deptno 
+    FROM dept 
+    WHERE dname = 'MARKETING');
+
+15) SELECT *
+    FROM emp
+    WHERE sal > (SELECT AVG(sal)
+    FROM emp);

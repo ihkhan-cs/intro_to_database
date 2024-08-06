@@ -1,0 +1,50 @@
+1) CREATE TABLE department (
+   deptid NUMBER(3) PRIMARY KEY,
+   dept_name VARCHAR(6) 
+   CHECK(dept_name IN('CSE', 'EEE', 'BBA', 'Eng', 'Ach')),
+   budget NUMBER(6) DEFAULT(0));
+
+2) CREATE TABLE course (
+   crs_id NUMBER(4),
+   crs_name VARCHAR2(20) NOT NULL,
+   dept_id NUMBER(3), 
+   CONSTRAINT PK_CID PRIMARY KEY (crs_id),
+   CONSTRAINT FKD FOREIGN KEY(dept_id) REFERENCES department(deptid));
+
+3) CREATE TABLE student (
+   s_id NUMBER,
+   s_name VARCHAR2(20),
+   phone NUMBER,
+   address VARCHAR2(50),
+   email VARCHAR2(30),
+   credit_completed NUMBER(3),
+   course_completed NUMBER(2),
+   cgpa NUMBER,
+   deptno NUMBER(5),
+   gender VARCHAR2(6));
+
+4) ALTER TABLE student
+   ADD CONSTRAINT PK_SID PRIMARY KEY(s_id);
+
+5) ALTER TABLE student MODIFY ( s_name NOT NULL);
+
+6) ALTER TABLE student
+   ADD CONSTRAINT UNQ_EMAIL UNIQUE(email);
+
+7) ALTER TABLE student
+   ADD CONSTRAINT FK_STD_DEPTNO FOREIGN KEY(deptno)
+   REFERENCES DEPARTMENT(deptid);
+
+8) ALTER TABLE student
+   ADD CONSTRAINT CHK_GENDER CHECK(gender LIKE 'M' OR 
+   gender LIKE 'F');
+
+9) ALTER TABLE student DISABLE CONSTRAINT PK_SID;
+
+10) ALTER TABLE student DROP CONSTRAINT CHK_GENDER;
+
+11) SELECT COLUMN_NAME, CONSTRAINT_NAME
+    FROM USER_CONS_COLUMNS
+    WHERE TABLE_NAME= 'STUDENT';
+
+12) ALTER TABLE student ENABLE CONSTRAINT PK_SID;
